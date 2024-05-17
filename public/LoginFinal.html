@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Craze</title>
+    <style>
+        /*importing fonts*/
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body{
+            background-image: linear-gradient(to right,rgba(0, 0, 0, 0.75),rgba(32, 32, 32, 0.7)),
+            url(https://firebasestorage.googleapis.com/v0/b/anshvohra.appspot.com/o/Images%2F104768589-movies-anywhere.jpeg?alt=media&token=ecf232a0-7087-4e06-95b5-1426bc81bc16);
+            background-size: cover;
+        }
+
+        ::selection{
+        background: rgb(85,131,131);
+        color: #fff;
+        }
+
+        header {
+            padding: 1%;
+            padding-right: 3%;
+            padding-left: 2%;
+            display: flex;
+            justify-content: left;
+            caret-color: transparent;
+        }
+
+        header img {
+            margin-top:1.2%;
+            height: 50px;
+        }
+
+        main{
+            margin-top:85px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main .login_container{
+            width:360px;
+            padding:30px;
+            text-align: center;
+            background-color: #ffffff;
+            border-radius: 10px;
+        }
+
+        main .login_container .title{
+            font-size: 30px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+
+        main .login_container form .textField{
+            color:#000000;
+            width:100%;
+            height:50px;
+            border:2px solid black;
+            border-radius: 15px;
+            margin-top:15px;
+            padding:5%;
+            font-size: 17px;
+            display: block;
+        }
+
+        main .login_container form .textField:focus{
+            border-color: rgb(85,131,131);
+        }
+
+        .button{
+            color:#f5f5f5;
+            font-size: 20px;
+            font-weight: 500;
+            width:100%;
+            height:50px;
+            border-radius: 15px;
+            border-style: none;
+            margin-top:25px;
+            background: rgb(85,131,131);
+            background: linear-gradient(90deg, rgba(85,131,131,1) 0%, rgba(109,161,153,1) 100%);
+        }
+        .button:hover{
+            background: rgb(85,131,131);
+            background: linear-gradient(90deg, rgba(109,161,153,1) 100%, rgba(85,131,131,1) 0%);
+        }
+
+        .otpButton{
+            display:none;
+        }
+
+        .gbutton{
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: row;
+            align-items: center;
+            color:#f5f5f5;
+            font-size: 20px;
+            font-weight: 500;
+            width:100%;
+            height:50px;
+            border-radius: 15px;
+            border-style: none;
+            margin-top:25px;
+            margin-bottom:15px;
+            background-color: #353535;
+        }
+        .gbutton:hover{
+            background-color: #111111;
+        }
+
+        .gbutton img{
+            width:25px;
+        }
+
+        .or-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px; 
+        }
+
+        .or-line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: #000000; 
+            border: none;
+        }
+
+        .or-text {
+            color: #000000;
+            margin: 0 10px;
+        }
+
+        .otp{
+            display:none;
+        }
+
+        .otp .OTPcontainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top:25px;
+        }
+        
+        .input {
+            width: 40px;
+            border: none;
+            border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+            margin: 0 10px;
+            text-align: center;
+            font-size: 25px;
+        }
+        
+        .input:focus {
+            border-bottom: 3px solid rgb(85,131,131);
+            outline: none;
+        }
+        
+        .input:nth-child(1) {
+            cursor: pointer;
+            pointer-events: all;
+        }
+
+        .warning{
+            text-align: center;
+            color:red;
+            padding-top: 2%;
+            display: none;
+            transition: display 0.4s ease;
+        }
+
+        .loadingbox{
+            display: none;
+        }
+
+        .loader{
+            top: 0px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display:flex;
+            justify-content: center;
+            z-index: 2;
+            position: fixed;
+            background: rgba(0, 0, 0, 0.701);
+        }
+        .lds-ellipsis {
+            margin-top: 20%;
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        .lds-ellipsis div {
+        position: absolute;
+        top: 33px;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: #fff;
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+        .lds-ellipsis div:nth-child(1) {
+        left: 8px;
+        animation: lds-ellipsis1 0.6s infinite;
+        }
+        .lds-ellipsis div:nth-child(2) {
+        left: 8px;
+        animation: lds-ellipsis2 0.6s infinite;
+        }
+        .lds-ellipsis div:nth-child(3) {
+        left: 32px;
+        animation: lds-ellipsis2 0.6s infinite;
+        }
+        .lds-ellipsis div:nth-child(4) {
+        left: 56px;
+        animation: lds-ellipsis3 0.6s infinite;
+        }
+        @keyframes lds-ellipsis1 {
+        0% {
+            transform: scale(0);
+        }
+        100% {
+            transform: scale(1);
+        }
+        }
+        @keyframes lds-ellipsis3 {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(0);
+        }
+        }
+        @keyframes lds-ellipsis2 {
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(24px, 0);
+        }
+        }
+        @media (max-width:768px) {
+            .lds-ellipsis {
+                margin-top:50%;
+            }
+            header img{
+                margin-top:2.2%;
+            }  
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html"><img src="https://firebasestorage.googleapis.com/v0/b/anshvohra.appspot.com/o/Images%2FLogo-removebg-preview.png?alt=media&token=2f9982ed-4b2f-4103-88fb-e3e348e78752" alt="Logo"></a>
+    </header>
+
+    <div class="loadingbox" id="loading"><div class="loader">
+        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div>
+    </div></div></div>
+
+    <main>
+        <div class="login_container">
+            <div class="title">Welcome!</div>
+            <hr>
+            <button class="gbutton" id="logInWithGoogle">Continue with Google<img src="https://firebasestorage.googleapis.com/v0/b/anshvohra.appspot.com/o/Images%2FGoogle__G__logo.svg.png?alt=media&token=650cee41-f0da-4949-bdc9-1f7aed4241ce" alt="Google Logo">
+            </button>
+            <form id="emailForm">
+                <div class="or-container">
+                    <hr class="or-line">
+                    <span class="or-text">Or</span>
+                    <hr class="or-line">
+                </div>
+                <input class="textField" type="email" name="email" id="email" placeholder="Enter e-mail" required>
+                <div id="warning1" class="warning">Failed to send the OTP, Check email again</div>
+                <div class="otp" id="otp">
+                    <p id="otpMsg"></p>
+                    <div class="OTPcontainer">
+                        <div id="inputs" class="inputs">
+                            <input id="input1" class="input" type="text" inputmode="numeric" maxlength="1" />
+                            <input id="input2" class="input" type="text" inputmode="numeric" maxlength="1" />
+                            <input id="input3" class="input" type="text" inputmode="numeric" maxlength="1" />
+                            <input id="input4" class="input" type="text" inputmode="numeric" maxlength="1" />
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="button" id="emailButton">Continue</button>
+                <button type="submit" class="button otpButton" id="otpButton">Submit</button>
+                <div id="warning2" class="warning">Wrong OTP</div>
+            </form>     
+        </div>
+    </main>
+    <script type="module" src="LoginFinal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</body>
+</html>

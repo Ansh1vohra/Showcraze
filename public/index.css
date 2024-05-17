@@ -1,0 +1,550 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+h1,h2,h3{
+    font-weight: bold;
+}
+.head{
+    position: relative;
+    background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0.881),rgba(56, 56, 56, 0.8)),
+    url(https://firebasestorage.googleapis.com/v0/b/anshvohra.appspot.com/o/Images%2F104768589-movies-anywhere.jpeg?alt=media&token=ecf232a0-7087-4e06-95b5-1426bc81bc16);
+    background-size: cover;
+    padding-bottom:5%;
+}
+
+.head .waves{
+    position:absolute;
+    bottom:0;
+    width:100%;
+}
+
+header {
+    position: relative;
+    color: #fff;
+    padding: 1%;
+    padding-right: 3%;
+    padding-left: 2%;
+    text-align: center;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.sticky-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: #f5f5f5;
+    animation: slideDown 0.3s ease-in-out; 
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.sticky-header .leftHeader{
+    margin-right: 5%; 
+}
+
+.sticky-header .leftHeader .setLocation .menuNavigator span{
+    color:black;
+}
+
+.sticky-header .leftHeader .setLocation .menuNavigator .dropdown-arrow{
+    border-top: 7px solid #000000;
+}
+
+.sticky-header .leftHeader .menu {
+    cursor:pointer;
+}
+
+.sticky-header .leftHeader .menu:hover{
+    background-color: #adadad;
+}   
+
+header img {
+    margin-top:1.2%;
+    height: 50px; 
+}
+
+.buttn{
+    background: rgb(85,131,131);
+    border-color: rgb(85,131,131);
+}
+.buttn:hover{
+    border-color: rgb(61, 104, 104);
+    background: rgba(85, 131, 131, 0.822);
+}
+header button {
+    padding: 1%;
+    background: rgb(85,131,131);
+    background: linear-gradient(90deg, rgba(85,131,131,1) 0%, rgba(109,161,153,1) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height:30px;
+    width:75px;
+    margin-left: 10px;
+}
+
+.leftHeader{
+    margin-top: -0.2%;
+    display:flex;
+    align-items: center;
+}
+
+.leftHeader img{
+  height:22px;
+  margin-right:10px;
+  margin-top:-1px;
+}
+
+.setLocation {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+
+.setLocation .menuNavigator{
+    display:flex;
+    align-items: center;
+    margin:10px;
+    margin-left:0px;
+}
+/* for styling the text of which user will hover and can see the mennu*/
+.setLocation .menuNavigator span{
+    color:#f5f5f5;
+    font-size: 20px;
+    max-width:100px;
+    overflow-x: hidden;
+}
+
+/* Styling for the drop-down arrow */
+.setLocation .menuNavigator .dropdown-arrow {
+    margin-left: 7px;
+    height: 0;
+    width: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #f5f5f5;
+    position: relative;
+}
+
+.location-menu {
+    z-index: 2;
+    position: absolute;
+    top: 100%;
+    left: -75px; 
+    width: 200px; 
+    background-color: #fff; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    display: none;
+}
+
+.leftHeader .setLocation:hover .location-menu{
+    display: block;
+}
+
+.location-menu .menu-options {
+    max-height: 150px; 
+    overflow-y: auto;
+}
+
+.location-menu .menu-options span {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 3px;
+}
+
+.location-menu .menu-options span:hover {
+    background-color: #f5f5f5; 
+}
+
+#locationSearch {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* hamburger menu */
+.leftHeader .menu {
+  width: 30px;
+  height: 30px;
+  padding: 2%;
+  padding-left: 4%;
+  padding-right: 4%;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius:5px;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/anshvohra.appspot.com/o/Images%2Fhamburger-menu.png?alt=media&token=7d9fcaf9-c9e1-4fc4-ae1f-1a2c49b0d544);
+  background-size: cover;
+  background-position: center center; 
+}
+
+.menu:hover {
+  background-color: #414141;
+}
+
+/* making sidemenu more in focus */
+.dark-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.452);
+    z-index: 2;
+    display: none; 
+}
+
+.sidemenu{
+    position: fixed;
+    top:0;
+    right:0;
+    background-color: #f5f5f5;
+    height: 100%;
+    width:23%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 3;
+    transition: transform 0.5s ease;
+    padding-top: 1.2%;
+}
+.sidemenu-hidden {
+    transform: translateX(100%);
+}
+
+.sidemenu .row1{
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1px;
+    margin-bottom: 8%;
+}
+
+.sidemenu .row1 .closeMenu{
+    cursor: pointer;
+    width:20px;
+    height: 20px;
+    margin-right:10%;
+    margin-bottom:2%;
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/anshvohra.appspot.com/o/Images%2Fcross-23-512.png?alt=media&token=d1d968be-1c2a-4f1b-a33f-b4b50b00157d);
+    background-size: cover;
+    background-position: center center;
+}
+
+.sidemenu .row1 p{
+    font-weight: bold;
+    font-size: large;
+    margin-left:10%;
+    text-align: center;
+}
+
+
+.sidemenu hr{
+    width:100%;
+    color:black;
+    margin:0;
+}
+
+.sidemenu button{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    color:#000000;
+    border:none;
+}
+
+.sidemenu button img{
+    margin:3%;
+}
+
+.sidemenu button p{
+    font-size:14px;
+    padding:2%;
+}
+
+.sidemenu button:hover{
+    background-color: rgb(201, 201, 201);
+}
+
+.blur-content {
+    transition: opacity 0.5s ease;
+}
+
+.blur-content.blurred {
+    opacity:0.85; /* Adjust the opacity value as needed */
+}
+
+
+
+.introduction {
+    color:#f5f5f5;
+    text-align: center;
+    margin: 7%;
+}
+.introduction h1 {
+    font-family: DM Sans;
+    font-size: 62px;
+    background-image: linear-gradient(to right, #00a4ea, #6bb9b9, #e30075);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.introduction p{
+    font-size: 18px;
+    margin-right: 20px; 
+}
+.custom-shape-divider-bottom-1702991231 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.mvcatalog{
+    margin-top: 2%;
+    margin-left: 6%;
+    font-size: large;
+    color: #0c0c0c;
+    font-weight: bold;
+}
+
+.main {
+    margin-left: 6%;
+    margin-right: 6%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    margin-bottom: 5%;
+    position: relative;
+}
+
+.movie-container {
+    margin-bottom: 20px;
+    padding: 2%;
+    display: flex;
+    flex-wrap: wrap; /* Allow movies to wrap to the next line */
+    justify-content: center; /* Center movies horizontally */
+}
+
+.movie {
+    background-color: #f5f5f5;
+    flex: 0 0 auto;
+    max-width: 200px;
+    margin: 20px;
+    border-color: #365d5d;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0px 2px 8px 0px #365d5d;
+    transition: 0.5s ease;
+    width: calc(20% - 50px); /* 20% width with margin on both sides */
+}
+
+
+.movie:hover{
+    transform:translateY(-8px);
+}
+
+main .movie-container .movie img{
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 5px;
+}
+
+main .movie-container .movie h2{
+    margin:10px;
+    font-size: 17px;
+    text-align: center;
+}
+
+main .movie-container .movie p{
+    color:#151c29;
+    padding: 5px;
+    max-width: 100%; /* Limit the maximum width */
+    overflow-wrap: break-word;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+footer .footer-left img {
+    width:150px;
+}
+.footer-right{
+    display: flex;
+    align-items: center;
+}
+
+.social-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.social-links li {
+    margin-right: 10px;
+}
+
+.social-links img {
+    max-width: 35px; 
+}
+
+.footer-right p {
+    font-size: 14px;
+}
+
+::selection{
+    background-color: #363636cf;
+    color:#f5f5f5;
+}
+
+
+@media (max-width: 950px) {
+    .head{
+        background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0.881),rgba(56, 56, 56, 0.8)),
+        url(https://firebasestorage.googleapis.com/v0/b/anshvohra.appspot.com/o/Images%2F104768589-movies-anywhere.jpeg?alt=media&token=ecf232a0-7087-4e06-95b5-1426bc81bc16);
+        border-radius: 0% 0% 0% 0%;
+        padding-bottom:3%;
+    }
+    header {
+        position: sticky;
+        top: 0;
+        color: #000000;
+        padding: 1%;
+        padding-right: 3%;
+        padding-left: 2%;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1; 
+    }
+
+    header img{
+        margin-top:7px;
+        height: 45px; 
+    }
+
+    .leftHeader img{
+        height:18px;
+        width: auto;
+        margin-right:6px;
+        margin-top:-1px;
+    }
+
+    header .leftHeader span{
+        color: #0c0c0c;
+    }
+
+    .location-menu {
+        width:150px;
+        left:-55px;
+    }
+
+    .setLocation .menuNavigator{
+        margin-right: 3px;
+    }
+
+    .setLocation .menuNavigator span{
+        font-size: 16px;
+    }
+
+    .leftHeader .menu {
+        width: 25px;
+        height: 25px;
+    }
+
+    .sidemenu{
+        width:80%;
+    }
+
+    .sidemenu .row1{
+        margin-top: 5px;
+    }
+    
+    .introduction {
+        padding-bottom: 10px;
+    }
+    .mvcatalog{
+        margin-top: 25px;
+        margin-left: 0;
+        text-align: center;
+    }
+    main {
+        margin-top:5%;
+        margin-bottom:2%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between; 
+    }
+
+    .movie {
+        flex: 0 0 43%; /* Adjust the flex value as needed */
+        margin: 10px;
+    }
+    .movie:hover{
+        transform:translateY(0px);
+    }
+
+
+    .movie h2{
+        font-size: 14px;
+    }
+
+    .movie p{
+        font-size: 14px;
+    }
+
+    footer{
+        flex-direction: column;
+        align-items: center; 
+    }
+    .footer-right{
+        flex-direction: column;
+        align-items: center; 
+    }
+}
+@media (max-width: 375px) {
+    .setLocation .menuNavigator span{
+        max-width:60px;
+        overflow-x: hidden;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .sidemenu {
+        width: 40%;
+    }
+}

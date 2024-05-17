@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://firebasestorage.googleapis.com/v0/b/try-project-01.appspot.com/o/Logo-circle2.png?alt=media&token=0c8f67c0-b7c7-4d53-a80a-cda2958d9a42" type="image/png">
+    <title>Show Craze</title>
+    <style>
+        /*importing fonts*/
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body{
+            background-image: linear-gradient(to right,rgba(0, 0, 0, 0.75),rgba(32, 32, 32, 0.7)),
+            url(https://firebasestorage.googleapis.com/v0/b/anshvohra.appspot.com/o/Images%2F104768589-movies-anywhere.jpeg?alt=media&token=ecf232a0-7087-4e06-95b5-1426bc81bc16);
+            background-size: cover;
+        }
+
+        ::selection{
+        background: rgb(85,131,131);
+        color: #fff;
+        }
+
+        header {
+            padding: 1%;
+            padding-right: 3%;
+            padding-left: 2%;
+            display: flex;
+            justify-content: left;
+            caret-color: transparent;
+        }
+
+        header img {
+            margin-top:1.2%;
+            height: 50px;
+        }
+
+        .container{
+            margin:4%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .wrapper{
+            overflow: hidden;
+            max-width: 390px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+        }
+
+        .wrapper .title-text{
+            caret-color: transparent;
+            display: flex;
+            width: 200%;
+        }
+
+        .wrapper .title{
+            caret-color: transparent;
+            width: 50%;
+            font-size: 30px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+        }
+
+        .wrapper .slide-controls{
+            position: relative;
+            display: flex;
+            height: 50px;
+            width: 100%;
+            overflow: hidden;
+            margin: 30px 0 10px 0;
+            justify-content: space-between;
+            border: 1px solid lightgrey;
+            border-radius: 15px;
+        }
+
+        .slide-controls .slide{
+            height: 100%;
+            width: 100%;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            text-align: center;
+            line-height: 48px;
+            cursor: pointer;
+            z-index: 1;
+            transition: all 0.6s ease;
+        }
+        .slide-controls label.signup{
+            caret-color: transparent;
+            color: #000;
+        }
+        .slide-controls .slider-tab{
+            caret-color: transparent;
+            position: absolute;
+            height: 100%;
+            width: 50%;
+            left: 0;
+            z-index: 0;
+            border-radius: 15px;
+            background: rgb(85,131,131);
+            background: linear-gradient(90deg, rgba(85,131,131,1) 0%, rgba(109,161,153,1) 100%);
+            transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+        }
+
+        input[type="radio"]{
+            display: none;
+        }
+        #signup:checked ~ .slider-tab{
+        left: 50%;
+        }
+        #signup:checked ~ label.signup{
+        color: #fff;
+        cursor: default;
+        user-select: none;
+        }
+        #signup:checked ~ label.login{
+        color: #000;
+        }
+        #login:checked ~ label.signup{
+        color: #000;
+        }
+        #login:checked ~ label.login{
+        cursor: default;
+        user-select: none;
+        }
+
+        .wrapper .form-container{
+            overflow: hidden;
+        }
+        .form-container .form-inner{
+            display: flex;
+            width: 200%;
+        }
+        .form-container .form-inner form{
+            width: 50%;
+            transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+        }
+        .form-inner form .field{
+            height: 50px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .form-inner form .field input{
+        height: 100%;
+        width: 100%;
+        outline: none;
+        padding-left: 15px;
+        border-radius: 15px;
+        border: 1px solid lightgrey;
+        border-bottom-width: 2px;
+        font-size: 17px;
+        transition: all 0.3s ease;
+        }
+
+        .form-inner form .field input:focus{
+        border-color: rgb(85,131,131);
+        /* box-shadow: inset 0 0 3px #fb6aae; */
+        }
+
+        .form-inner form .field input::placeholder{
+        color: #999;
+        transition: all 0.3s ease;
+        }
+        form .field input:focus::placeholder{
+        color: rgb(85,131,131);
+        }
+
+        form .linktext{
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            margin:10px;
+            cursor: pointer;
+        }
+
+        #warning{
+            text-align: center;
+            color:red;
+            padding-top: 2%;
+        }
+
+        #warning2{
+            text-align:center;
+            color:red;
+            padding-top:2%;
+        }
+
+        .button{
+            color:#f5f5f5;
+            font-size: 20px;
+            font-weight: 500;
+            width:100%;
+            height:50px;
+            border-radius: 15px;
+            border-style: none;
+            margin-top:25px;
+            background: rgb(85,131,131);
+            background: linear-gradient(90deg, rgba(85,131,131,1) 0%, rgba(109,161,153,1) 100%);
+            transition: all 0.4s ease;
+        }
+        .button:hover{
+            background: rgb(85,131,131);
+            background: linear-gradient(90deg, rgba(109,161,153,1) 100%, rgba(85,131,131,1) 0%);
+        }
+        .gbutton{
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: row;
+            align-items: center;
+            color:#f5f5f5;
+            font-size: 20px;
+            font-weight: 500;
+            width:100%;
+            height:50px;
+            border-radius: 15px;
+            border-style: none;
+            margin-top:25px;
+            background-color: #353535;
+        }
+        .gbutton:hover{
+            background-color: #111111;
+        }
+
+        .gbutton img{
+            width:25px;
+        }
+
+        .loadingbox{
+            display: none;
+        }
+
+        .loader{
+            top: 0px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display:flex;
+            justify-content: center;
+            z-index: 2;
+            position: fixed;
+            background: rgba(0, 0, 0, 0.701);
+        }
+        .lds-ellipsis {
+            margin-top: 20%;
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        .lds-ellipsis div {
+        position: absolute;
+        top: 33px;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: #fff;
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+        .lds-ellipsis div:nth-child(1) {
+        left: 8px;
+        animation: lds-ellipsis1 0.6s infinite;
+        }
+        .lds-ellipsis div:nth-child(2) {
+        left: 8px;
+        animation: lds-ellipsis2 0.6s infinite;
+        }
+        .lds-ellipsis div:nth-child(3) {
+        left: 32px;
+        animation: lds-ellipsis2 0.6s infinite;
+        }
+        .lds-ellipsis div:nth-child(4) {
+        left: 56px;
+        animation: lds-ellipsis3 0.6s infinite;
+        }
+        @keyframes lds-ellipsis1 {
+        0% {
+            transform: scale(0);
+        }
+        100% {
+            transform: scale(1);
+        }
+        }
+        @keyframes lds-ellipsis3 {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(0);
+        }
+        }
+        @keyframes lds-ellipsis2 {
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(24px, 0);
+        }
+        }
+        @media (max-width:768px) {
+            .lds-ellipsis {
+                margin-top:50%;
+            }
+            header img{
+                margin-top:2.2%;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html"><img src="https://firebasestorage.googleapis.com/v0/b/anshvohra.appspot.com/o/Images%2FLogo-removebg-preview.png?alt=media&token=2f9982ed-4b2f-4103-88fb-e3e348e78752" alt="Logo"></a>
+    </header>
+    <div class="loadingbox" id="loading"><div class="loader">
+        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div>
+    </div></div></div>
+    <div class="container">
+        <div class="wrapper">
+            <div class="title-text">
+              <div class="title login">Login Form</div>
+              <div class="title signup">Signup Form</div>
+            </div>
+            <br><hr>
+            <div class="form-container">
+              <div class="slide-controls">
+                <input type="radio" name="slide" id="login" checked>
+                <input type="radio" name="slide" id="signup">
+                <label for="login" class="slide login">Login</label>
+                <label for="signup" class="slide signup">Signup</label>
+                <div class="slider-tab"></div>
+              </div>
+              <button class="gbutton" id="logInWithGoogle">Continue with Google <img src="https://firebasestorage.googleapis.com/v0/b/anshvohra.appspot.com/o/Images%2FGoogle__G__logo.svg.png?alt=media&token=650cee41-f0da-4949-bdc9-1f7aed4241ce" alt="Google Logo">
+            </button>
+              <div class="form-inner">
+                <form class="login" id="loginForm">
+                  <div class="field">
+                    <input type="email" placeholder="Email Address" id="email" required>
+                  </div>
+                  <div class="field">
+                    <input type="password" placeholder="Password" id="password" required>
+                  </div>
+                  <div class="linktext" id="forgotPasswordLink">Forgot password?</div>
+                  <button class="button" type="submit" id="login_button">Log-in</button>
+                  <div id="warning"></div>
+                </form>
+                <form class="signup" id="signupForm">
+                    <div class="field">
+                        <input type="text" placeholder="Name" id="userName" required>
+                    </div>
+                    <div class="field">
+                        <input type="email" placeholder="Email Address" id="newEmail" 
+                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
+                        title="Enter a valid email address" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" placeholder="Password" id="newPass" 
+                        pattern="^(?=.*[A-Z])(?=.*\d).{8,}$" 
+                        title="Password must be at least 8 characters long and contain at least one uppercase letter and one digit." 
+                        required>
+                    </div>
+                    <div class="field">
+                        <input type="password" placeholder="Confirm password" id="cnfPass" required>
+                    </div>
+                    <button class="button" type="submit">Sign-Up</button>
+                    <div id="warning2"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+    </div>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script type="module" src="login.js"></script>    
+</body>
+</html>
